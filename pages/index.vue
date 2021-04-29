@@ -26,14 +26,14 @@
       <h2 class="text-xl" v-text="'Chodíš do ' + schoolclass + ', však?'"></h2>
       </div>
       <div class="flex flex-row justify-center gap-5">
-      <input @click="next()" class="bg-blue-700 text-white text-xl p-4 rounded" type="button" value="Áno">
-      <input @click="tostart()" class="bg-blue-700 text-white text-xl p-4 rounded" type="button" value="Nie">
+      <input @click="next()" class="bg-blue-700 text-white text-xl py-4 px-8 rounded" type="button" value="Áno">
+      <input @click="tostart()" class="bg-red-700 text-white text-xl py-4 px-8 rounded" type="button" value="Nie">
       </div>
       <p class="back" @click="tostart()">Na začiatok</p>
     </div>
     <div class="container" v-if="visiblestep == 2">
       <div>
-      <h1>Test? Prekonal si? Zadaj to sem</h1>
+      <h1>Máš test? Si zaočkovaný? Zadaj to sem</h1>
       <h2>Ako dátum zadaj dátum testovania, očkovania alebo pozitívneho testu.</h2>
       </div>
       <div class="flex flex-col justify-center gap-5">
