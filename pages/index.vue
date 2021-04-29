@@ -44,6 +44,7 @@
       </select>
       <input class="border p-2" type="date" name="testdate" id="testdate" v-model="testdate">
       <input @click="adultnextpage()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
+      <span v-show="emptystudent" style="color:red">Nesprávne vyplnené údaje!</span>
       </div>
       <p class="back" @click="tostart()">Na začiatok</p>
     </div>
@@ -59,7 +60,8 @@
         <option value="vaccination">Očkovanie druhou dávkou</option>
       </select>
       <input class="border p-2" type="date" name="testdate" id="testdate" v-model="parenttestdate">
-      <input @click="next(); submit()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
+      <input @click="parentnext();" class="bg-blue-700 text-white p-2 rounded" type="button" value="Odoslať">
+      <span v-show="emptyparent" style="color:red">Nesprávne vyplnené údaje!</span>
       </div>
       <p class="back" @click="tostart()">Na začiatok</p>
     </div>
@@ -86,6 +88,8 @@ export default {
       isic: 180,
       covidpass: "",
       adultstudent: false,
+      emptystudent: false,
+      emptyparent: false,
       testtype: "",
       testdate: "",
       parenttesttype: "",
@@ -134,11 +138,41 @@ export default {
       console.log(this.visiblestep);
     },
     adultnextpage(){
+      if (this.checkstudentempty() == true) {
+        return
+      }
       if (this.adultstudent == true) {
         this.visiblestep = 4;
         this.submit();
       }
       else {
+        this.next();
+      }
+    },
+    checkstudentempty(){
+      if (this.testtype == "" || this.testdate == "") {
+        this.emptystudent = true;
+        return true;
+      } else {
+        this.emptystudent = false;
+        return false;
+      }
+    },
+    checkparentempty(){
+      if (this.parenttesttype == "" || this.parenttestdate == "") {
+        this.emptyparent = true;
+        return true;
+      } else {
+        this.emptyparent = false;
+        return false;
+      }
+    },
+    parentnext(){
+      if (this.checkparentempty() == true) {
+        return
+      }
+      else {
+        this.submit();
         this.next();
       }
     },
