@@ -113,7 +113,7 @@ export default {
       //go to start
       },  
     submit() {
-      axios.post('http://192.168.1.155:8888/action.php',{
+      axios.post('http://192.168.1.159:8888/action.php',{
         isic:this.isic,
         testdate:this.testdate,
         testtype:this.testtype,
