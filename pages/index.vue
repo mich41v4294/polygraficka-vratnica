@@ -18,7 +18,6 @@
       </div>
       <div class="self-end">
         <p class="text-s text-gray-500">Používaním aplikácie súhlasíte so všeobecnými podmienkami ochrany osobných údajov.</p>
-        <p class="text-s text-gray-500">Admin panel</p>
         </div>
     </div>
     <div class="container" v-if="visiblestep == 1">
@@ -116,7 +115,7 @@ export default {
     submit() {
       axios.post('/action.php',{
         isic:this.isic,
-        covidpass:this.covidpass,
+        testdate:this.testdate,
         testtype:this.testtype,
         parenttestdate:this.parenttestdate,
         parenttestdate:this.parenttestdate,
