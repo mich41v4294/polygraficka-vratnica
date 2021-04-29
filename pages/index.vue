@@ -31,22 +31,56 @@
       <input @click="tostart()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Nie">
       </div>
     </div>
+    <div class="container" v-if="visiblestep == 2">
+      <div>
+      <h1>Zadaj svoj dátum narodenia</h1>
+      <h2>Neboj,tvoje údaje sú u nás v bezpečí.</h2>
+      </div>
+      <div class="flex flex-row justify-center gap-5">
+      <input type="date" name="birthdate" id="birthdate" v-model="birthdate">
+      <input @click="next()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
+      </div>
+    </div>
+    <div class="container" v-if="visiblestep == 3">
+      <div>
+      <h1>Test? Prekonal si? Zadaj to sem</h1>
+      <h2>Ako dátum zadaj dátum testovania, očkovania alebo pozitívneho testu.</h2>
+      </div>
+      <div class="flex flex-col justify-center gap-5">
+      <select name="testtype" id="testtype" v-model="testtype">
+        <option value="test">Negatívny test</option>
+        <option value="postcovid">Prekonané ochorenie COVID-19</option>
+        <option value="vaccination">Očkovanie druhou dávkou</option>
+      </select>
+      <input type="date" name="testdate" id="testdate" v-model="testdate">
+      <input @click="next(); submit()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
+      </div>
+    </div>
+    <div class="container" v-if="visiblestep == 4">
+      <div>
+      <h1>Ďakujeme!</h1>
+      <h2>Pomáhajme si navzájom.</h2>
+      </div>
+      <div>
+      
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 const isicReg = /(^\d{10}$)/g;
+const axios = require('axios').default;
+
 export default {
   data() {
     return {
       visiblestep: 0,
       isic: 180,
       covidpass: "",
+      birthdate: "",
       testtype: "",
       testdate: "",
-      parenttype: "",
-      parenttesttype: "",
-      age: false,
       wrongIsic: false,
       name: "Jozko",
       schoolclass: "3.GMB",
@@ -73,7 +107,19 @@ export default {
       //go to start
       },  
     submit() {
-      //final send to database
+      axios.post('/action.php',{
+        isic:this.isic,
+        birthdate:this.birthdate,
+        covidpass:this.covidpass,
+        testtype:this.testtype,
+        testdate:this.testdate,
+      })
+      .then(function (response) {
+        console.log(response);
+       })
+      .catch(function (error) {
+        console.log(error);
+      });
       },
     debug() {
       console.log(this.visiblestep);
