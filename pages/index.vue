@@ -11,9 +11,9 @@
       <p class="text-lg">Číslo tvojho ISIC čipu</p>
       <div class="flex flex-row justify-center gap-2">
       <input class="border rounded p-2" type="number" name="chipnumber" id="chipnumber" v-model="isic">
-      <input class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej" @click="isicCheck();">
+      <input class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej" @click="next();">
       </div>
-      <span v-show="wrongIsic" style="color:red">Nespravne cislo cipu</span>
+      <span v-show="isicError" style="color:red">Nespravne cislo cipu</span>
       </div>
       </div>
       <div class="self-end">
@@ -33,18 +33,23 @@
     </div>
     <div class="container" v-if="visiblestep == 2">
       <div>
-      <h1>Zadaj svoj dátum narodenia</h1>
-      <h2>Neboj,tvoje údaje sú u nás v bezpečí.</h2>
+      <h1>Test? Prekonal si? Zadaj to sem</h1>
+      <h2>Ako dátum zadaj dátum testovania, očkovania alebo pozitívneho testu.</h2>
       </div>
-      <div class="flex flex-row justify-center gap-5">
-      <input type="date" name="birthdate" id="birthdate" v-model="birthdate">
-      <input @click="next()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
+      <div class="flex flex-col justify-center gap-5">
+      <select name="testtype" id="testtype" v-model="testtype">
+        <option value="test">Negatívny test</option>
+        <option value="postcovid">Prekonané ochorenie COVID-19</option>
+        <option value="vaccination">Očkovanie druhou dávkou</option>
+      </select>
+      <input type="date" name="testdate" id="testdate" v-model="testdate">
+      <input @click="next(); submit()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
       </div>
     </div>
     <div class="container" v-if="visiblestep == 3">
       <div>
-      <h1>Test? Prekonal si? Zadaj to sem</h1>
-      <h2>Ako dátum zadaj dátum testovania, očkovania alebo pozitívneho testu.</h2>
+      <h1>A tvoj zákonný záastupca?</h1>
+      <h2>Zadaj informácie o testovaní/očkovaní tvojho zákonného zástupcu.</h2>
       </div>
       <div class="flex flex-col justify-center gap-5">
       <select name="testtype" id="testtype" v-model="testtype">
@@ -78,24 +83,26 @@ export default {
       visiblestep: 0,
       isic: 180,
       covidpass: "",
-      birthdate: "",
+      adultstudent: false,
       testtype: "",
       testdate: "",
-      wrongIsic: false,
+      parenttesttype: "",
+      parenttestdate: "",
+      isicError: false,
       name: "Jozko",
       schoolclass: "3.GMB",
     };
   },
   methods: {
-    isicCheck() {
+   /* isicCheck() { //isic kontrola
       console.log(this.isic);
-      if (isicReg.test(this.isic)) {
-      this.wrongIsic = false;
+      if () {                   
+      this.wrongIsic = false;//ak v poriadku
       this.next();
     } else {
-      this.wrongIsic = true;
+      this.wrongIsic = true;//ak chyba
     }
-    },
+    },*/
     next() {
       this.visiblestep = this.visiblestep + 1;
       console.log(this.visiblestep);
@@ -109,10 +116,10 @@ export default {
     submit() {
       axios.post('/action.php',{
         isic:this.isic,
-        birthdate:this.birthdate,
         covidpass:this.covidpass,
         testtype:this.testtype,
-        testdate:this.testdate,
+        parenttestdate:this.parenttestdate,
+        parenttestdate:this.parenttestdate,
       })
       .then(function (response) {
         console.log(response);
@@ -123,7 +130,16 @@ export default {
       },
     debug() {
       console.log(this.visiblestep);
-    }
+    },
+    adultnextpage(){
+      if (adultstudent == true) {
+        this.visiblestep = 4;
+        this.submit();
+      }
+      else {
+        this.next();
+      }
+    },
   },
   mounted () {
   },
