@@ -13,22 +13,23 @@
       <input class="border rounded p-2" type="number" name="chipnumber" id="chipnumber" v-model="isic">
       <input class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej" @click="next();">
       </div>
-      <span v-show="isicError" style="color:red">Nespravne cislo cipu</span>
+      <span v-show="isicError" style="color:red">Nesprávne číslo čipu!</span>
       </div>
       </div>
       <div class="self-end">
-        <p class="text-s text-gray-500">Používaním aplikácie súhlasíte so všeobecnými podmienkami ochrany osobných údajov.</p>
+        <p class="text-s text-gray-500 mb-20">Používaním aplikácie súhlasíte so všeobecnými podmienkami ochrany osobných údajov.</p>
         </div>
     </div>
     <div class="container" v-if="visiblestep == 1">
       <div>
-      <h1 v-text="'Ahoj, ' + name + '!'"></h1>
+      <h1 v-text="'Ahoj, si ' + name + '?'"></h1>
       <h2 class="text-xl" v-text="'Chodíš do ' + schoolclass + ', však?'"></h2>
       </div>
       <div class="flex flex-row justify-center gap-5">
       <input @click="next()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Áno">
       <input @click="tostart()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Nie">
       </div>
+      <p class="back" @click="tostart()">Na začiatok</p>
     </div>
     <div class="container" v-if="visiblestep == 2">
       <div>
@@ -44,31 +45,33 @@
       <input type="date" name="testdate" id="testdate" v-model="testdate">
       <input @click="adultnextpage()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
       </div>
+      <p class="back" @click="tostart()">Na začiatok</p>
     </div>
     <div class="container" v-if="visiblestep == 3">
       <div>
-      <h1>A tvoj zákonný záastupca?</h1>
+      <h1>A tvoj zákonný zástupca?</h1>
       <h2>Zadaj informácie o testovaní/očkovaní tvojho zákonného zástupcu.</h2>
       </div>
       <div class="flex flex-col justify-center gap-5">
-      <select name="testtype" id="testtype" v-model="testtype">
+      <select name="testtype" id="testtype" v-model="parenttesttype">
         <option value="test">Negatívny test</option>
         <option value="postcovid">Prekonané ochorenie COVID-19</option>
         <option value="vaccination">Očkovanie druhou dávkou</option>
       </select>
-      <input type="date" name="testdate" id="testdate" v-model="testdate">
+      <input type="date" name="testdate" id="testdate" v-model="parenttestdate">
       <input @click="next(); submit()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
       </div>
+      <p class="back" @click="tostart()">Na začiatok</p>
     </div>
     <div class="container" v-if="visiblestep == 4">
       <div>
       <h1>Ďakujeme!</h1>
       <h2>Pomáhajme si navzájom.</h2>
       </div>
-      <div>
-      
-      </div>
+      <h1 class="text-7xl" v-text="pin"></h1>
+      <h2>Tento pin si uschovajte, budete ho potrebovať vovnútri.</h2>
     </div>
+    
   </div>
 </template>
 
@@ -118,7 +121,7 @@ export default {
         testdate:this.testdate,
         testtype:this.testtype,
         parenttestdate:this.parenttestdate,
-        parenttestdate:this.parenttestdate,
+        parenttesttype:this.parenttesttype,
       })
       .then(function (response) {
         console.log(response);
@@ -156,5 +159,8 @@ export default {
 }
 h1{
   @apply text-5xl;
+}
+p.back{
+  @apply text-left text-gray-500;
 }
 </style>
