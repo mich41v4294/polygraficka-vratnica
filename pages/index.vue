@@ -26,8 +26,8 @@
       <h2 class="text-xl" v-text="'Chodíš do ' + schoolclass + ', však?'"></h2>
       </div>
       <div class="flex flex-row justify-center gap-5">
-      <input @click="next()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Áno">
-      <input @click="tostart()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Nie">
+      <input @click="next()" class="bg-blue-700 text-white text-xl p-4 rounded" type="button" value="Áno">
+      <input @click="tostart()" class="bg-blue-700 text-white text-xl p-4 rounded" type="button" value="Nie">
       </div>
       <p class="back" @click="tostart()">Na začiatok</p>
     </div>
@@ -37,12 +37,12 @@
       <h2>Ako dátum zadaj dátum testovania, očkovania alebo pozitívneho testu.</h2>
       </div>
       <div class="flex flex-col justify-center gap-5">
-      <select name="testtype" id="testtype" v-model="testtype">
+      <select class="border p-2" name="testtype" id="testtype" v-model="testtype">
         <option value="test">Negatívny test</option>
         <option value="postcovid">Prekonané ochorenie COVID-19</option>
         <option value="vaccination">Očkovanie druhou dávkou</option>
       </select>
-      <input type="date" name="testdate" id="testdate" v-model="testdate">
+      <input class="border p-2" type="date" name="testdate" id="testdate" v-model="testdate">
       <input @click="adultnextpage()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
       </div>
       <p class="back" @click="tostart()">Na začiatok</p>
@@ -53,12 +53,12 @@
       <h2>Zadaj informácie o testovaní/očkovaní tvojho zákonného zástupcu.</h2>
       </div>
       <div class="flex flex-col justify-center gap-5">
-      <select name="testtype" id="testtype" v-model="parenttesttype">
+      <select class="border p-2" name="testtype" id="testtype" v-model="parenttesttype">
         <option value="test">Negatívny test</option>
         <option value="postcovid">Prekonané ochorenie COVID-19</option>
         <option value="vaccination">Očkovanie druhou dávkou</option>
       </select>
-      <input type="date" name="testdate" id="testdate" v-model="parenttestdate">
+      <input class="border p-2" type="date" name="testdate" id="testdate" v-model="parenttestdate">
       <input @click="next(); submit()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
       </div>
       <p class="back" @click="tostart()">Na začiatok</p>
@@ -162,5 +162,8 @@ h1{
 }
 p.back{
   @apply text-left text-gray-500;
+}
+h2{
+  @apply mt-1
 }
 </style>
