@@ -43,7 +43,7 @@
         <option value="vaccination">Očkovanie druhou dávkou</option>
       </select>
       <input type="date" name="testdate" id="testdate" v-model="testdate">
-      <input @click="next(); submit()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
+      <input @click="adultnextpage()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
       </div>
     </div>
     <div class="container" v-if="visiblestep == 3">
@@ -132,7 +132,7 @@ export default {
       console.log(this.visiblestep);
     },
     adultnextpage(){
-      if (adultstudent == true) {
+      if (this.adultstudent == true) {
         this.visiblestep = 4;
         this.submit();
       }
