@@ -10,10 +10,11 @@
       <div class="text-center mt-10">
       <p class="text-lg">Číslo tvojho ISIC čipu</p>
       <div class="flex flex-row justify-center gap-2">
-      <input class="border rounded p-2" type="number" name="chipnumber" id="chipnumber" v-model="isic">
+      <input class="border rounded p-2" type="number" name="chipnumber" id="chipnumber" v-model="chipNumber">
       <input class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej" @click="next();">
       </div>
       <span v-show="isicError" style="color:red">Nesprávne číslo čipu!</span>
+      <span v-show="checkChipError" style="color:red">Chyba komunikácie!</span>
       </div>
       </div>
       <div class="self-end">
@@ -22,7 +23,7 @@
     </div>
     <div class="container" v-if="visiblestep == 1">
       <div>
-      <h1 v-text="'Ahoj, si ' + name + '?'"></h1>
+      <h1 v-text="'Ahoj, si ' + firstname + '?'"></h1>
       <h2 class="text-xl" v-text="'Chodíš do ' + schoolclass + ', však?'"></h2>
       </div>
       <div class="flex flex-row justify-center gap-5">
@@ -34,9 +35,10 @@
     <div class="container" v-if="visiblestep == 2">
       <div>
       <h1>Máš test? Si zaočkovaný? Zadaj to sem</h1>
-      <h2>Ako dátum zadaj dátum testovania, očkovania alebo pozitívneho testu.</h2>
+      <h2 class="mt-3">Ako dátum zadaj dátum testovania, očkovania alebo pozitívneho testu.</h2>
       </div>
       <div class="flex flex-col justify-center gap-5">
+        <label for="testtype">Vyplň typ testu</label>
       <select class="border p-2" name="testtype" id="testtype" v-model="testtype">
         <option value="test">Negatívny test</option>
         <option value="postcovid">Prekonané ochorenie COVID-19</option>
@@ -51,9 +53,10 @@
     <div class="container" v-if="visiblestep == 3">
       <div>
       <h1>A tvoj zákonný zástupca?</h1>
-      <h2>Zadaj informácie o testovaní/očkovaní tvojho zákonného zástupcu.</h2>
+      <h2 class="mt-3">Zadaj informácie o testovaní/očkovaní tvojho zákonného zástupcu.</h2>
       </div>
       <div class="flex flex-col justify-center gap-5">
+        <label for="testtype">Vyplň typ testu</label>
       <select class="border p-2" name="testtype" id="testtype" v-model="parenttesttype">
         <option value="test">Negatívny test</option>
         <option value="postcovid">Prekonané ochorenie COVID-19</option>
@@ -87,7 +90,7 @@ export default {
   data() {
     return {
       visiblestep: 0,
-      isic: 180,
+      chipNumber: 31,
       covidpass: "",
       adultstudent: false,
       emptystudent: false,
@@ -96,15 +99,16 @@ export default {
       testdate: "",
       parenttesttype: "",
       parenttestdate: "",
+      checkChipError: false,
       isicError: false,
-      name: "Jozko",
+      firstname: "Jozko",
       schoolclass: "3.GMB",
       token: "55688",
     };
   },
   methods: {
    /* isicCheck() { //isic kontrola
-      console.log(this.isic);
+      console.log(this.chipNumber);
       if () {                   
       this.wrongIsic = false;//ak v poriadku
       this.next();
@@ -121,14 +125,34 @@ export default {
       this.visiblestep = 0;
       console.log(this.visiblestep);
       //go to start
-      },  
+      },
+    /*checkChip() {
+      axios.get('http://192.168.1.159:8888/checkChip',{
+        params: {
+          chipNumber:this.chipNumber,
+        }
+      })
+      .then(function (response) {
+        console.log(response);
+        default.firstname = response.data.firstName;
+        this.next();
+       })
+      .catch(function (error) {
+        console.log(error);
+        this.checkChipError = true;
+      });
+      },
+
+  */
     submit() {
-      axios.post('http://192.168.1.159:8888/action.php',{
-        isic:this.isic,
-        testdate:this.testdate,
-        testtype:this.testtype,
-        parenttestdate:this.parenttestdate,
-        parenttesttype:this.parenttesttype,
+      axios.post('http://192.168.1.159:8888/checkChip',{
+        params: {
+          chipNumber:this.chipNumber,
+          testdate:this.testdate,
+          testtype:this.testtype,
+          parenttestdate:this.parenttestdate,
+          parenttesttype:this.parenttesttype,
+        }
       })
       .then(function (response) {
         console.log(response);
@@ -205,6 +229,12 @@ export default {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+body{
+  font-family: 'Lato', sans-serif;
+}
+
 .container {
   @apply h-screen w-screen flex flex-col justify-around text-center px-4;
 }
