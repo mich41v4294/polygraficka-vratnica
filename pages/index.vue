@@ -160,7 +160,7 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
-      this.savecookies();
+      //this.savecookies();
       },
     debug() {
       console.log(this.visiblestep);
@@ -204,7 +204,7 @@ export default {
         this.next();
       }
     },
-    savecookies(){
+    /*savecookies(){
       this.$cookies.set("token", this.token, "8d")
     },
     existingcookiescheck(){
@@ -212,7 +212,7 @@ export default {
         this.token = this.$cookies.get("token");
         this.visiblestep = 4;
       }
-    }
+    }*/
   },
   beforeMount(){
     this.existingcookiescheck();
