@@ -7,18 +7,20 @@
       <h1 class="justify-self-center">Vitaj v škole!</h1>
       <h2>Budeme od teba potrebovať pár údajov.</h2>
       </div>
-      <div class="text-center mt-10">
+      <div class="text-center mt-5 shadow-lg py-8">
       <p class="text-lg">Číslo tvojho ISIC čipu</p>
-      <div class="flex flex-row justify-center gap-2">
-      <input class="border rounded p-2" type="number" name="chipnumber" id="chipnumber" v-model="chipNumber">
-      <input class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej" @click="next();">
+      <div class="flex flex-col justify-center items-center gap-2">
+      <input class="border rounded p-2 w-56" type="number" name="chipnumber" id="chipnumber" v-model="chipNumber">
+      <p class="bg-blue-700 text-white p-2 rounded w-56 flex justify-center items-center gap-2" type="button" value="Ďalej" @click="next();">Ďalej
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></p>
       </div>
       <span v-show="isicError" style="color:red">Nesprávne číslo čipu!</span>
       <span v-show="checkChipError" style="color:red">Chyba komunikácie!</span>
       </div>
       </div>
       <div class="self-end">
-        <p class="text-s text-gray-500 mb-20">Používaním aplikácie súhlasíte so všeobecnými podmienkami ochrany osobných údajov a používaním cookies.</p>
+        <p class="text-s text-gray-500 mb-10">Používaním aplikácie súhlasíte so všeobecnými podmienkami ochrany osobných údajov a používaním cookies.</p>
         </div>
     </div>
     <div class="container" v-if="visiblestep == 1">
@@ -85,7 +87,6 @@
 <script>
 const isicReg = /(^\d{10}$)/g;
 const axios = require('axios').default;
-
 export default {
   data() {
     return {
@@ -107,6 +108,7 @@ export default {
     };
   },
   methods: {
+    
    /* isicCheck() { //isic kontrola
       console.log(this.chipNumber);
       if () {                   
@@ -221,6 +223,8 @@ export default {
    
   },
 }
+
+
 </script>
 
 <style>
@@ -236,7 +240,7 @@ body{
 }
 
 .container {
-  @apply h-screen w-screen flex flex-col justify-around text-center px-4;
+  @apply h-screen w-screen flex flex-col justify-between text-center px-4;
 }
 h1{
   @apply text-5xl;
@@ -244,7 +248,9 @@ h1{
 p.back{
   @apply text-left text-gray-500;
 }
+
 h2{
   @apply mt-1
 }
+
 </style>
