@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <div class="container" v-if="visiblestep == 0">
-      <img @click="debug();" class="w-3/5 mx-auto mt-10 self-start" src="~/assets/vratnicalogo.png">
+  <div class="w-screen h-screen">
+    <div class="header">
+      <img @click="debug();" class="w-3/5 mx-auto self-start" src="~/assets/vratnicalogo.png">
+    </div>
+    <div class="content" v-if="visiblestep == 0">
       <div>
       <div>
       <h1 class="justify-self-center">Vitaj v škole!</h1>
@@ -23,7 +25,7 @@
         <p class="text-s text-gray-500 mb-10">Používaním aplikácie súhlasíte so všeobecnými podmienkami ochrany osobných údajov a používaním cookies.</p>
         </div>
     </div>
-    <div class="container" v-if="visiblestep == 1">
+    <div class="content" v-if="visiblestep == 1">
       <div>
       <h1 v-text="'Ahoj, si ' + firstname + '?'"></h1>
       <h2 class="text-xl" v-text="'Chodíš do ' + schoolclass + ', však?'"></h2>
@@ -34,7 +36,7 @@
       </div>
       <p class="back" @click="tostart()">Na začiatok</p>
     </div>
-    <div class="container" v-if="visiblestep == 2">
+    <div class="content" v-if="visiblestep == 2">
       <div>
       <h1>Máš test? Si zaočkovaný? Zadaj to sem</h1>
       <h2 class="mt-3">Ako dátum zadaj dátum testovania, očkovania alebo pozitívneho testu.</h2>
@@ -52,7 +54,7 @@
       </div>
       <p class="back" @click="tostart()">Na začiatok</p>
     </div>
-    <div class="container" v-if="visiblestep == 3">
+    <div class="content" v-if="visiblestep == 3">
       <div>
       <h1>A tvoj zákonný zástupca?</h1>
       <h2 class="mt-3">Zadaj informácie o testovaní/očkovaní tvojho zákonného zástupcu.</h2>
@@ -70,7 +72,7 @@
       </div>
       <p class="back" @click="tostart()">Na začiatok</p>
     </div>
-    <div class="container" v-if="visiblestep == 4">
+    <div class="content" v-if="visiblestep == 4">
       <div>
       <h1>Ďakujeme!</h1>
       <h2>Pomáhajme si navzájom.</h2>
@@ -259,9 +261,13 @@ export default {
 body{
   font-family: 'Lato', sans-serif;
 }
-
-.container {
-  @apply h-screen w-screen flex flex-col justify-between text-center px-4;
+.header{
+  height: 15vh;
+  @apply pt-8;
+}
+.content {
+  height: 85vh;
+  @apply w-screen flex flex-col justify-between text-center px-4;
 }
 h1{
   @apply text-5xl;
