@@ -107,7 +107,7 @@ export default {
       wrongIsic: false,
       firstname: "",
       schoolclass: "",
-      token: "cookietesttoken",
+      token: "",
       pin: "",
     };
   },
