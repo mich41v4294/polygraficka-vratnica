@@ -42,9 +42,9 @@
       <h2 class="mt-3">Ako dátum zadaj dátum testovania, očkovania alebo pozitívneho testu.</h2>
       </div>
       <div class="flex flex-col justify-center gap-5">
-        <label for="testtype">Vyplň typ testu</label>
+        <label for="testtype">Vyber typ dokladu o negativite:</label>
       <select class="border p-2" name="testtype" id="testtype" v-model="testtype">
-        <option value="test">Negatívny test</option>
+        <option value="test">Negatívny AG alebo PCR test</option>
         <option value="postcovid">Prekonané ochorenie COVID-19</option>
         <option value="vectorVaccine">Očkovanie 1. dávkou vektorovej vakcíny</option>
         <option value="mRnaVaccine">Očkovanie 2. dávkou mRNA vakcíny</option>
@@ -61,9 +61,9 @@
       <h2 class="mt-3">Zadaj informácie o testovaní/očkovaní tvojho zákonného zástupcu.</h2>
       </div>
       <div class="flex flex-col justify-center gap-5">
-        <label for="testtype">Vyplň typ testu</label>
+        <label for="testtype">Vyber typ dokladu o negativite:</label>
       <select class="border p-2" name="testtype" id="testtype" v-model="parenttesttype">
-        <option value="test">Negatívny test</option>
+        <option value="test">Negatívny AG alebo PCR test</option>
         <option value="postcovid">Prekonané ochorenie COVID-19</option>
         <option value="vectorVaccine">Očkovanie 1. dávkou vektorovej vakcíny</option>
         <option value="mRnaVaccine">Očkovanie 2. dávkou mRNA vakcíny</option>
