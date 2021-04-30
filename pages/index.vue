@@ -215,7 +215,7 @@ export default {
     }*/
   },
   beforeMount(){
-    this.existingcookiescheck();
+  //  this.existingcookiescheck();
   },
   mounted () {
    
