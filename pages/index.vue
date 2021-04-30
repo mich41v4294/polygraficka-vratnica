@@ -21,7 +21,7 @@
         <p class="text-s text-gray-500 mb-20">Používaním aplikácie súhlasíte so všeobecnými podmienkami ochrany osobných údajov a používaním cookies.</p>
         </div>
     </div>
-    <div class="container" v-if="visiblestep == 1">
+    <div class="container" v-if="visiblestep == 1">ss
       <div>
       <h1 v-text="'Ahoj, si ' + firstname + '?'"></h1>
       <h2 class="text-xl" v-text="'Chodíš do ' + schoolclass + ', však?'"></h2>
