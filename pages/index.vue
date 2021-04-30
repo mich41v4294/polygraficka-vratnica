@@ -127,7 +127,7 @@ export default {
       //go to start
       },
     /*checkChip() {
-      axios.get('http://192.168.1.159:8888/checkChip',{
+      axios.get('https://vratnica.polygraficka.sk/checkChip',{
         params: {
           chipNumber:this.chipNumber,
         }
@@ -145,7 +145,7 @@ export default {
 
   */
     submit() {
-      axios.post('http://192.168.1.159:8888/checkChip',{
+      axios.post('https://vratnica.polygraficka.sk/checkChip',{
         params: {
           chipNumber:this.chipNumber,
           testdate:this.testdate,
