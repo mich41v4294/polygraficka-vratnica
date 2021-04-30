@@ -17,7 +17,7 @@
       </div>
       </div>
       <div class="self-end">
-        <p class="text-s text-gray-500 mb-20">Používaním aplikácie súhlasíte so všeobecnými podmienkami ochrany osobných údajov.</p>
+        <p class="text-s text-gray-500 mb-20">Používaním aplikácie súhlasíte so všeobecnými podmienkami ochrany osobných údajov a používaním cookies.</p>
         </div>
     </div>
     <div class="container" v-if="visiblestep == 1">
