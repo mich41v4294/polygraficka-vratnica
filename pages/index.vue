@@ -70,13 +70,15 @@
       <h1>Ďakujeme!</h1>
       <h2>Pomáhajme si navzájom.</h2>
       </div>
-      <h1 class="text-7xl" v-text="pin"></h1>
+      <h1 class="text-7xl" v-text="token"></h1>
       <h2>Tento pin si uschovajte, budete ho potrebovať vovnútri.</h2>
+      <p class="back" @click="tostart()">Na začiatok</p>
     </div>
-    
   </div>
 </template>
 
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-cookies@1.7.4/vue-cookies.js"></script>
 <script>
 const isicReg = /(^\d{10}$)/g;
 const axios = require('axios').default;
@@ -97,6 +99,7 @@ export default {
       isicError: false,
       name: "Jozko",
       schoolclass: "3.GMB",
+      token: "55688",
     };
   },
   methods: {
@@ -133,6 +136,7 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+      this.savecookies();
       },
     debug() {
       console.log(this.visiblestep);
@@ -176,8 +180,21 @@ export default {
         this.next();
       }
     },
+    savecookies(){
+      this.$cookies.set("token", this.token, "8d")
+    },
+    existingcookiescheck(){
+      if (this.$cookies.isKey("token") == true) {
+        this.token = this.$cookies.get("token");
+        this.visiblestep = 4;
+      }
+    }
+  },
+  beforeMount(){
+    this.existingcookiescheck();
   },
   mounted () {
+   
   },
 }
 </script>
