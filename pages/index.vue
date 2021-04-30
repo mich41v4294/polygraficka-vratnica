@@ -75,7 +75,7 @@
       <h1>Ďakujeme!</h1>
       <h2>Pomáhajme si navzájom.</h2>
       </div>
-      <h1 class="text-7xl" v-text="token"></h1>
+      <h1 class="text-7xl" v-text="pin"></h1>
       <h2>Tento pin si uschovajte, budete ho potrebovať vovnútri.</h2>
       <p class="back" @click="tostart()">Na začiatok</p>
     </div>
