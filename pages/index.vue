@@ -13,7 +13,7 @@
       <p class="text-lg">Číslo tvojho ISIC čipu</p>  
       <input class="border rounded p-2 w-56" type="number" name="chipnumber" id="chipnumber" v-model="chipNumber">
       <p class="text-lg">Posledné písmeno čísla ISIC</p>
-      <input class="border rounded p-2 w-56" type="text" name="isicCheckLetter" id="isicCheckLetter" placeholder="A" v-model="isicCheckLetter">
+      <input class="border rounded p-2 w-56" type="text" name="isicCheckLetter" id="isicCheckLetter" placeholder="A" maxlength="1" v-model="isicCheckLetter">
       <p class="bg-blue-700 text-white p-2 rounded w-56 flex justify-center items-center gap-2" type="button" value="Ďalej" @click="checkChip();">Ďalej
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></p>
