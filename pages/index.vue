@@ -156,7 +156,7 @@ export default {
       });
       },
     submit() {
-      axios.post('https://vratnica.polygraficka.sk/checkChip',{
+      axios.get('https://vratnica.polygraficka.sk/userData',{
         params: {
           chipNumber:this.chipNumber,
           testdate:this.testdate,
@@ -169,11 +169,11 @@ export default {
         console.log(response);
         this.pin = response.data.pin;
         this.token = response.data.token;
+        this.savetoken();
        })
       .catch(function (error) {
         console.log(error);
       });
-      this.savecookies();
       },
     debug() {
       console.log(this.visiblestep);
@@ -217,13 +217,14 @@ export default {
         this.next();
       }
     },
-    savecookies(){
+    savetoken(){
       this.$cookies.set("token", this.token, "30d")
     },
     existingcookiescheck() {
+      if (this.$cookies.isKey("token") == true) {
       axios.get('https://vratnica.polygraficka.sk/checkToken',{
         params: {
-          token:this.token,
+          token:this.$cookies.get("token"),
         }
       })
       .then((response) => {
@@ -233,6 +234,7 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+      }
       },
   },
   beforeMount(){
