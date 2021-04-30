@@ -46,7 +46,8 @@
       <select class="border p-2" name="testtype" id="testtype" v-model="testtype">
         <option value="test">Negatívny test</option>
         <option value="postcovid">Prekonané ochorenie COVID-19</option>
-        <option value="vaccination">Očkovanie druhou dávkou</option>
+        <option value="vectorVaccine">Očkovanie 1. dávkou vektorovej vakcíny</option>
+        <option value="mRnaVaccine">Očkovanie 2. dávkou mRNA vakcíny</option>
       </select>
       <input class="border p-2" type="date" name="testdate" id="testdate" v-model="testdate">
       <input @click="adultnextpage()" class="bg-blue-700 text-white p-2 rounded" type="button" value="Ďalej">
@@ -64,7 +65,8 @@
       <select class="border p-2" name="testtype" id="testtype" v-model="parenttesttype">
         <option value="test">Negatívny test</option>
         <option value="postcovid">Prekonané ochorenie COVID-19</option>
-        <option value="vaccination">Očkovanie druhou dávkou</option>
+        <option value="vectorVaccine">Očkovanie 1. dávkou vektorovej vakcíny</option>
+        <option value="mRnaVaccine">Očkovanie 2. dávkou mRNA vakcíny</option>
       </select>
       <input class="border p-2" type="date" name="testdate" id="testdate" v-model="parenttestdate">
       <input @click="parentnext();" class="bg-blue-700 text-white p-2 rounded" type="button" value="Odoslať">
