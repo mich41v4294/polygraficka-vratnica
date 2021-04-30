@@ -32,7 +32,7 @@
       </div>
       <div class="flex flex-row justify-center gap-5">
       <input @click="next()" class="bg-blue-700 text-white text-xl py-4 px-8 rounded" type="button" value="Áno">
-      <input @click="tostart()" class="bg-red-700 text-white text-xl py-4 px-8 rounded" type="button" value="Nie">
+      <input @click="tostart(); resetIsicInput();" class="bg-red-700 text-white text-xl py-4 px-8 rounded" type="button" value="Nie">
       </div>
       <p class="back" @click="tostart()">Na začiatok</p>
     </div>
@@ -239,6 +239,10 @@ export default {
       });
       }
       },
+    resetIsicInput(){
+      this.chipNumber = "";
+      this.isicCheckLetter = "";
+    }
   },
   beforeMount(){
     this.existingcookiescheck();
