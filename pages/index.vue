@@ -7,15 +7,15 @@
       <h1 class="justify-self-center">Vitaj v škole!</h1>
       <h2>Budeme od teba potrebovať pár údajov.</h2>
       </div>
-      <div class="text-center mt-5 shadow-lg py-8">
-      <p class="text-lg">Číslo tvojho ISIC čipu</p>
-      <div class="flex flex-col justify-center items-center gap-2">
+      <div class="text-center mt-5 shadow-lg py-8 flex flex-col justify-center items-center gap-2">
+      <p class="text-lg">Číslo tvojho ISIC čipu</p>  
       <input class="border rounded p-2 w-56" type="number" name="chipnumber" id="chipnumber" v-model="chipNumber">
+      <p class="text-lg">Posledné písmeno čísla ISIC</p>
+      <input class="border rounded p-2 w-56" type="text" name="isicCheckLetter" id="isicCheckLetter" placeholder="A" v-model="isicCheckLetter">
       <p class="bg-blue-700 text-white p-2 rounded w-56 flex justify-center items-center gap-2" type="button" value="Ďalej" @click="checkChip();">Ďalej
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></p>
-      </div>
-      <span v-show="wrongIsic" style="color:red">Nesprávne číslo čipu!</span>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></p>
+      <span v-show="wrongIsic" style="color:red">Nesprávne číslo čipu/kontrolné písmeno!</span>
       <span v-show="checkChipError" style="color:red">Chyba komunikácie!</span>
       </div>
       </div>
@@ -92,6 +92,7 @@ export default {
     return {
       visiblestep: 0,
       chipNumber: 31,
+      isicCheckLetter: "",
       covidpass: "",
       adultstudent: false,
       emptystudent: false,
@@ -132,6 +133,7 @@ export default {
       axios.get('https://vratnica.polygraficka.sk/checkChip',{
         params: {
           chipNumber:this.chipNumber,
+          checkLetter: this.isicCheckLetter,
         }
       })
       .then( (response) => {
