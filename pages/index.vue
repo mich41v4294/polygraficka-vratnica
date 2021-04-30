@@ -105,7 +105,8 @@ export default {
       wrongIsic: false,
       firstname: "",
       schoolclass: "",
-      token: "55688",
+      token: "",
+      pin: "",
     };
   },
   methods: {
@@ -166,6 +167,8 @@ export default {
       })
       .then(function (response) {
         console.log(response);
+        this.pin = response.data.pin;
+        this.token = response.data.token;
        })
       .catch(function (error) {
         console.log(error);
@@ -215,14 +218,22 @@ export default {
       }
     },
     savecookies(){
-      this.$cookies.set("token", this.token, "8d")
+      this.$cookies.set("token", this.token, "30d")
     },
-    existingcookiescheck(){
-      if (this.$cookies.isKey("token") == true) {
-        this.token = this.$cookies.get("token");
-        this.visiblestep = 4;
-      }
-    }
+    existingcookiescheck() {
+      axios.get('https://vratnica.polygraficka.sk/checkToken',{
+        params: {
+          token:this.token,
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        this.pin = response.data.pin;
+       })
+      .catch((error) => {
+        console.log(error);
+      });
+      },
   },
   beforeMount(){
     this.existingcookiescheck();
