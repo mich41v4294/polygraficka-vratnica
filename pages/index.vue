@@ -107,7 +107,7 @@ export default {
       wrongIsic: false,
       firstname: "",
       schoolclass: "",
-      token: "",
+      token: "cookietesttoken",
       pin: "",
     };
   },
@@ -223,7 +223,7 @@ export default {
       this.$cookies.set("token", this.token, "30d")
     },
     existingcookiescheck() {
-      if (this.$cookies.isKey("token") == true) {
+      if (this.$cookies.isKey("token") == true || this.$cookies.get("token") !== "") {
       axios.get('https://vratnica.polygraficka.sk/checkToken',{
         params: {
           token:this.$cookies.get("token"),
@@ -232,6 +232,7 @@ export default {
       .then((response) => {
         console.log(response);
         this.pin = response.data.pin;
+        this.chipNumber = response.data.chipNumber;
        })
       .catch((error) => {
         console.log(error);
