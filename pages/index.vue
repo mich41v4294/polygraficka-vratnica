@@ -167,13 +167,13 @@ export default {
           parenttesttype:this.parenttesttype,
         }
       })
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
         this.pin = response.data.pin;
         this.token = response.data.token;
         this.savetoken();
        })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
       },
