@@ -15,7 +15,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></p>
       </div>
-      <span v-show="isicError" style="color:red">Nesprávne číslo čipu!</span>
+      <span v-show="wrongIsic" style="color:red">Nesprávne číslo čipu!</span>
       <span v-show="checkChipError" style="color:red">Chyba komunikácie!</span>
       </div>
       </div>
@@ -101,9 +101,9 @@ export default {
       parenttesttype: "",
       parenttestdate: "",
       checkChipError: false,
-      isicError: false,
-      firstname: "Jozko",
-      schoolclass: "3.GMB",
+      wrongIsic: false,
+      firstname: "",
+      schoolclass: "",
       token: "55688",
     };
   },
@@ -139,7 +139,13 @@ export default {
         this.firstname = response.data.firstName;
         this.schoolclass = response.data.schoolClass;
         this.adult = response.data.adult;
-        this.next();
+        if (this.firstname === "" || this.schoolclass === "" || this.adult === "") {
+          this.wrongIsic = true;
+        } else {
+          this.wrongIsic = false;
+          this.next();
+        }
+        console.log(this.wrongIsic);
        })
       .catch((error) => {
         console.log(error);
