@@ -87,7 +87,6 @@
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-cookies@1.7.4/vue-cookies.js"></script>
 <script>
-const isicReg = /(^\d{10}$)/g;
 const axios = require('axios').default;
 export default {
   data() {
