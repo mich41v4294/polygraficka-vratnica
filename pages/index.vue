@@ -224,7 +224,7 @@ export default {
       this.$cookies.set("token", this.token, "30d")
     },
     existingcookiescheck() {
-      if (this.$cookies.isKey("token") == true) {
+      
       axios.get('https://vratnica.polygraficka.sk/checkToken',{
         params: {
           token:this.$cookies.get("token"),
@@ -242,7 +242,7 @@ export default {
       .catch((error) => {
         console.log(error);
       });
-      }
+      
       },
     resetIsicInput(){
       this.chipNumber = "";
