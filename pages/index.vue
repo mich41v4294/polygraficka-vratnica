@@ -19,6 +19,10 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></p>
       <span v-show="wrongIsic" style="color:red">Nesprávne číslo čipu/kontrolné písmeno!</span>
       <span v-show="checkChipError" style="color:red">Chyba komunikácie!</span>
+      <div v-if="this.pin !== ''">
+        <p>Tvoj pin je</p>
+        <h1 v-text="pin"></h1>
+      </div>
       </div>
       </div>
       <div class="self-end">
@@ -234,9 +238,6 @@ export default {
         console.log(response);
         this.pin = response.data.pin;
         this.chipNumber = response.data.chipNumber;
-        if (this.pin !== "") {
-          this.visiblestep = 4;
-        }
         
        })
       .catch((error) => {
