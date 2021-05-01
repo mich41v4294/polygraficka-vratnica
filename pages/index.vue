@@ -11,9 +11,9 @@
       </div>
       <div class="text-center mt-5 shadow-lg py-8 flex flex-col justify-center items-center gap-2">
       <p class="text-lg">Číslo tvojho ISIC čipu</p>  
-      <input class="border rounded p-2 w-56" type="number" name="chipnumber" id="chipnumber" v-model="chipNumber">
+      <input class="border rounded p-2 w-56" type="number" name="chipnumber" id="chipnumber" v-bind:placeholder="chipNumberPlaceholder" v-model="chipNumber">
       <p class="text-lg">Posledné písmeno čísla ISIC</p>
-      <input class="border rounded p-2 w-56" type="text" name="isicCheckLetter" id="isicCheckLetter" placeholder="A" maxlength="1" v-model="isicCheckLetter">
+      <input class="border rounded p-2 w-56" type="text" name="isicCheckLetter" id="isicCheckLetter" v-bind:placeholder="isicCheckLetterPlaceholder" maxlength="1" v-model="isicCheckLetter">
       <p class="bg-blue-700 text-white p-2 rounded w-56 flex justify-center items-center gap-2" type="button" value="Ďalej" @click="checkChip();">Ďalej
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></p>
@@ -99,6 +99,8 @@ export default {
     return {
       visiblestep: 0,
       chipNumber: "",
+      chipNumberPlaceholder: "",
+      isicCheckLetterPlaceholder: "A",
       isicCheckLetter: "",
       covidpass: "",
       adultstudent: false,
@@ -113,6 +115,7 @@ export default {
       firstname: "",
       schoolclass: "",
       token: "",
+      validToken: false,
       pin: "",
     };
   },
@@ -138,8 +141,12 @@ export default {
       //go to start
       },
     checkChip() {
+      if (this.validToken == true) {
+        this.next();
+      } else {
       axios.get('https://vratnica.polygraficka.sk/checkChip',{
         params: {
+          token:this.token,
           chipNumber:this.chipNumber,
           checkLetter: this.isicCheckLetter,
         }
@@ -155,16 +162,17 @@ export default {
           this.wrongIsic = false;
           this.next();
         }
-        console.log(this.wrongIsic);
        })
       .catch((error) => {
         console.log(error);
         this.checkChipError = true;
       });
+      };
       },
     submit() {
       axios.get('https://vratnica.polygraficka.sk/userData',{
         params: {
+          token:this.token,
           chipNumber:this.chipNumber,
           testdate:this.testdate,
           testtype:this.testtype,
@@ -228,7 +236,6 @@ export default {
       this.$cookies.set("token", this.token, "30d")
     },
     existingcookiescheck() {
-      
       axios.get('https://vratnica.polygraficka.sk/checkToken',{
         params: {
           token:this.$cookies.get("token"),
@@ -237,11 +244,13 @@ export default {
       .then((response) => {
         console.log(response);
         this.pin = response.data.pin;
-        this.chipNumber = response.data.chipNumber;
-        
+        this.chipNumberPlaceholder = response.data.chipNumber;
+        this.isicCheckLetterPlaceholder = "*";
+        this.validToken = true;
        })
       .catch((error) => {
         console.log(error);
+        this.validToken = false;
       });
       
       },
