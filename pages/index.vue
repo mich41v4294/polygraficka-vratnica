@@ -94,7 +94,7 @@ export default {
   data() {
     return {
       visiblestep: 0,
-      chipNumber: 31,
+      chipNumber: ,
       isicCheckLetter: "",
       covidpass: "",
       adultstudent: false,
