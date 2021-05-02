@@ -41,7 +41,7 @@
   </g>
 </svg>
     </div>
-    <div class="content " v-if="visiblestep == 0">
+    <div class="content" v-if="visiblestep == 0">
       <div>
       <div class="mt-8 mb-3">
       <h1 class="" style="">Vitaj v škole!</h1>
@@ -92,7 +92,7 @@
       </div>
       </div>
       <div class="">
-        <p class="text-xs text-gray-400 text-center mb-5">Používaním aplikácie súhlasíte so všeobecnými podmienkami ochrany osobných údajov a používaním cookies.</p>
+        <p class="text-xs text-gray-400 text-center my-5">Používaním aplikácie súhlasíte so všeobecnými podmienkami ochrany osobných údajov a používaním cookies.</p>
         </div>
     </div>
     <div class="content" v-if="visiblestep == 1">
