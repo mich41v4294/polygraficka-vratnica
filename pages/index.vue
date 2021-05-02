@@ -371,9 +371,6 @@ export default {
         console.log(error);
       });
       },
-    debug() {
-      console.log(this.visiblestep);
-    },
     adultnextpage(){
       if (this.checkstudentempty() == true) {
         return
