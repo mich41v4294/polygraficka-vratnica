@@ -100,8 +100,8 @@
       <span class="text-4xl font-bold mb-1">Ahoj, si&nbsp;</span><span v-text="firstname" class="text-4xl font-bold mb-1" style="color: #009ee2;"></span><span class="text-4xl font-bold mb-1">?</span>
       <h2 class="text-base mt-2" v-text="'Chodíš do ' + schoolclass + ', však?'"></h2>
       <div class="mt-16">
-      <p @click="next()" class="button h-16" style="background: #009ee2;" type="button" value="Áno">Áno, som to ja</p>
-      <p @click="tostart(); resetIsicInput();" class="button" style="background: #E74C3C;" type="button" value="Nie">Nie, zoberte ma späť</p>
+      <p @click="next()" class="button h-16 bg-blue-999 transition duration-500 ease-in-out hover:bg-blue-600" type="button" value="Áno">Áno, som to ja</p>
+      <p @click="tostart(); resetIsicInput();" class="text-white rounded-md flex items-center justify-center py-4 font-semibold mt-4 cursor-pointer bg-red-500 transition duration-500 ease-in-out hover:bg-red-600" type="button" value="Nie">Nie, zoberte ma späť</p>
       </div>
       </div>
       <p class="back" @click="back()"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -491,12 +491,12 @@ h1{
   color: #009ee2; 
 }
 p.back{
-  @apply text-left text-gray-300 mx-auto px-6 py-2 rounded font-semibold text-sm flex justify-center items-center mb-16 text-blue-999 cursor-pointer;
+  @apply text-left text-gray-300 mx-auto px-6 py-2 rounded font-semibold text-sm flex justify-center items-center mb-16 text-blue-999 cursor-pointer transition duration-500 ease-in-out hover:bg-blue-999 hover:text-white;
   border: 2px solid #009ee2;
 }
 
 p.home {
-  @apply text-left text-gray-300 mx-auto px-6 py-2 rounded font-semibold text-sm flex justify-center items-center mb-16 gap-2 cursor-pointer;
+  @apply text-left text-gray-300 mx-auto px-6 py-2 rounded font-semibold text-sm flex justify-center items-center mb-16 gap-2 cursor-pointer transition duration-500 ease-in-out hover:bg-blue-600;
   background: #009ee2;
   color: white;
 }
@@ -514,7 +514,7 @@ input, select {
 }
 
 .button {
-  @apply text-white rounded-md flex items-center justify-center py-4 font-semibold mt-4 cursor-pointer;
+  @apply text-white rounded-md flex items-center justify-center py-4 font-semibold mt-4 cursor-pointer transition duration-500 ease-in-out hover:bg-blue-600;
 }
 
 .warning {
