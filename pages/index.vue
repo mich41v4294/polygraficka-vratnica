@@ -97,7 +97,6 @@
     </div>
     <div class="content" v-if="visiblestep == 1">
       <div class="mt-8">
-      <!-- <h1 v-text="'Ahoj, si' + firstname + '?'"></h1> -->
       <span class="text-4xl font-bold mb-1">Ahoj, si&nbsp;</span><span v-text="firstname" class="text-4xl font-bold mb-1" style="color: #009ee2;"></span><span class="text-4xl font-bold mb-1">?</span>
       <h2 class="text-base mt-2" v-text="'Chodíš do ' + schoolclass + ', však?'"></h2>
       <div class="mt-16">
