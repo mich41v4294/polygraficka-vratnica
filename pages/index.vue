@@ -123,7 +123,7 @@
         <option value="mRnaVaccine">Očkovanie 2. dávkou mRNA vakcíny</option>
       </select>
       <p for="testdate" class="text-sm font-semibold mt-3">Vyber dátum testu alebo očkovania</p>
-      <input class="mt-2" type="date" name="testdate" id="testdate" v-model="testdate">
+      <input class="mt-2" type="date" name="testdate" id="testdate" v-model="testdate" :max="todaydate()">
       <p class="button bg-blue-999" type="button" value="Ďalej" style="" @click="adultnextpage();">Pokračovať
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></p>
@@ -147,7 +147,7 @@
         <option value="mRnaVaccine">Očkovanie 2. dávkou mRNA vakcíny</option>
       </select>
       <p for="testdate" class="text-sm font-semibold mt-3">Vyber dátum testu alebo očkovania</p>
-      <input class="mt-2" type="date" name="testdate" id="testdate" v-model="parenttestdate">
+      <input class="mt-2" type="date" name="testdate" id="testdate" v-model="parenttestdate" :max="todaydate()">
       <p class="button bg-blue-999" type="button" value="Ďalej" style="" @click="parentnext();">Pokračovať
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></p>
@@ -311,7 +311,7 @@ export default {
           token:this.$cookies.get("token"),
         }
       })
-      .then( (response) => {
+      .then((response) => {
         console.log(response);
         this.firstname = response.data.firstName;
         this.schoolclass = response.data.schoolClass;
@@ -413,9 +413,15 @@ export default {
         this.next();
       }
     },
-    
-      
-    
+    todaydate(){
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+      today = yyyy + '-' + mm + '-' + dd;
+      console.log(today);
+      return today;
+    },
     existingcookiescheck() {
       if (this.$cookies.isKey("token") == true) {
       axios.get('https://vratnica.polygraficka.sk/checkToken',{
