@@ -267,6 +267,7 @@ export default {
       schoolclass: "",
       validToken: false,
       checkMethod: "",
+      nfcAble: false,
     };
   },
   methods: {
@@ -454,10 +455,16 @@ export default {
     resetIsicInput(){
       this.chipNumber = "";
       this.isicCheckLetter = "";
+    },
+    nfcCheck(){
+      if ("NDEFReader" in window) {
+        this.nfcAble = true;
+      }
     }
   },
   beforeMount(){
     this.existingcookiescheck();
+    this.nfcCheck();
   },
   mounted () {
    
