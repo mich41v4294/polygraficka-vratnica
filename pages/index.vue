@@ -268,6 +268,7 @@ export default {
       firstname: "",
       schoolclass: "",
       validToken: false,
+      checkMethod: "",
     };
   },
   methods: {
@@ -289,10 +290,13 @@ export default {
     checkChip(){
       if (this.chipNumber !== "" || this.isicCheckLetter !== "") {
         this.checkChipNumber();
+        this.checkMethod = "chipNumber";
       } else if (this.validToken == true) {
         this.checkChipToken();
+        this.checkMethod = "token";
       } else {
         this.emptyIsicInput = true;
+        this.checkMethod = "";
       }
     },
     checkChipToken() {
@@ -325,7 +329,7 @@ export default {
           checkLetter: this.isicCheckLetter,
         }
       })
-      .then( (response) => {
+      .then((response) => {
         console.log(response);
         this.firstname = response.data.firstName;
         this.schoolclass = response.data.schoolClass;
@@ -343,9 +347,9 @@ export default {
       });
       },
     submit() {
-      axios.get('https://vratnica.polygraficka.sk/userData',{
+      if (this.checkMethod == "chipNumber") {
+        axios.get('https://vratnica.polygraficka.sk/userData',{
         params: {
-          token:this.$cookies.get("token"),
           chipNumber:this.chipNumber,
           testdate:this.testdate,
           testtype:this.testtype,
@@ -360,6 +364,25 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+      } else if (this.checkMethod == "token") {
+        axios.get('https://vratnica.polygraficka.sk/userData',{
+        params: {
+          token:this.$cookies.get("token"),
+          testdate:this.testdate,
+          testtype:this.testtype,
+          parenttestdate:this.parenttestdate,
+          parenttesttype:this.parenttesttype,
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        this.$cookies.set("token", response.data.token, "30d")
+       })
+      .catch((error) => {
+        console.log(error);
+      });
+      }
+      
       },
     adultnextpage(){
       if (this.checkstudentempty() == true) {
