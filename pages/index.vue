@@ -483,7 +483,7 @@ body{
 }
 
 .content {
-  @apply px-5 h-full flex flex-col justify-between lg:w-2/5 lg:mx-auto;
+  @apply px-5 h-full flex flex-col justify-between md:w-2/5 md:mx-auto;
 }
 
 h1{
