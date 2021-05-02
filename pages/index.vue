@@ -288,6 +288,7 @@ export default {
     tostart() {
       this.visiblestep = 0;
       console.log(this.visiblestep);
+      this.$toast.show('AAAAATOASTAAAAA');
       //go to start
       },
     checkChip(){
@@ -469,10 +470,12 @@ export default {
   try {
     const ndef = new NDEFReader();
     await ndef.scan();
+    this.$toast.show('Naskenuj ISIC');
     console.log("> Scan started");
 
     ndef.addEventListener("readingerror", () => {
       console.log("Argh! Cannot read data from the NFC tag. Try another one?");
+      this.$toast.show('Chyba skenu');
     });
 
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
@@ -481,6 +484,7 @@ export default {
       console.log(`> Records: (${message.records.length})`);
     });
   } catch (error) {
+    this.$toast.show('Chyba skenu');
     console.log("Argh! " + error);
   }
 },
