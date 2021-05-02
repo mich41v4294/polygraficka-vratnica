@@ -491,8 +491,7 @@ h1{
   color: #009ee2; 
 }
 p.back{
-  @apply text-left text-gray-300 mx-auto px-6 py-2 rounded font-semibold text-sm flex justify-center items-center mb-16;
-  color: #009ee2;
+  @apply text-left text-gray-300 mx-auto px-6 py-2 rounded font-semibold text-sm flex justify-center items-center mb-16 text-blue-999;
   border: 2px solid #009ee2;
 }
 
