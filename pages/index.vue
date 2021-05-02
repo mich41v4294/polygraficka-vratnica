@@ -80,7 +80,10 @@
 
       <div class="text-left shadow-lg p-4 rounded-md">
       <p class="text-sm font-semibold mb-2">Číslo tvojho ISIC čipu</p>  
+      <div style="position: relative;">
       <input  type="number" name="chipnumber" id="chipnumber" v-bind:placeholder="chipNumberPlaceholder" v-model="chipNumber">
+      <span class="material-icons-outlined absolute right-3 top-1/4">contactless</span>
+      </div>
       <p class="text-sm font-semibold mt-4 mb-2">Posledné písmeno čísla ISIC</p>
       <input  type="text" name="isicCheckLetter" id="isicCheckLetter" v-bind:placeholder="isicCheckLetterPlaceholder" maxlength="1" v-model="isicCheckLetter">
       <p class="button bg-blue-999" type="button" value="Ďalej" style="" @click="checkChip();">Pokračovať
