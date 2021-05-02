@@ -159,10 +159,10 @@
     </div>
     <div class="content" v-if="visiblestep == 4">
       <div>
-      <h1 class="mt-8">Ďakujeme!</h1>
-      <h2>..že pomáhaš sebe aj svojim spolužiakom</h2>
+      <h1 class="mt-8 text-center">Ďakujeme!</h1>
+      <h2 class="text-center">..že pomáhaš sebe aj svojim spolužiakom</h2>
       </div>
-      <svg width="335" height="301" viewBox="0 0 335 301" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="w-3/4 mx-auto" viewBox="0 0 335 301" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0)">
 <path d="M83.0013 76.3535C77.241 59.1806 59.4526 49.6362 47.7503 53.5405C36.0481 57.4448 27.599 75.7431 33.3592 92.916C38.6911 108.812 54.8474 117.988 65.9618 116.351C65.8816 116.49 65.8289 116.643 65.8063 116.801L65.4665 119.628C65.4406 119.844 65.4704 120.062 65.553 120.263C65.6355 120.464 65.7682 120.64 65.9384 120.776C66.1086 120.911 66.3106 121.001 66.5253 121.036C66.74 121.072 66.9602 121.052 67.1651 120.979L72.8903 118.931C73.0951 118.858 73.2778 118.734 73.421 118.57C73.5642 118.407 73.663 118.209 73.7083 117.997C73.7535 117.785 73.7436 117.565 73.6794 117.357C73.6152 117.15 73.499 116.962 73.3417 116.812L71.278 114.845C71.2046 114.778 71.1235 114.72 71.0365 114.672C80.9495 109.344 88.3447 92.2837 83.0013 76.3535Z" fill="#F2F2F2"/>
 <path d="M62.1482 63.7191C66.9319 66.1814 70.5851 70.3813 72.3538 75.452C74.1226 80.5228 73.8717 86.0772 71.6531 90.9689C71.1577 92.0936 72.9795 92.6851 73.4717 91.5677C75.8011 86.2749 76.038 80.2995 74.135 74.8398C72.2319 69.3801 68.3296 64.8398 63.2106 62.1294C62.1302 61.5584 61.0597 63.1439 62.1482 63.7191Z" fill="white"/>
@@ -233,7 +233,7 @@
 </clipPath>
 </defs>
 </svg>
-      <h2 class="text-center font-bold">Na vrátnici sa prosím preukáž svojou ISIC kartou.</h2>
+      <h2 class="text-center font-bold mt-2">Na vrátnici sa prosím preukáž svojou ISIC kartou.</h2>
       <p class="home" @click="tostart(); resetIsicInput()"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
       </svg>Na začiatok</p>
