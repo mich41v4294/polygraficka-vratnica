@@ -270,7 +270,7 @@ export default {
       schoolclass: "",
       validToken: false,
       checkMethod: "",
-      nfcAble: true,
+      nfcAble: false,
       scannedUID: "",
     };
   },
