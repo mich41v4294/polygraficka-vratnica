@@ -79,7 +79,7 @@
 </svg>
 
       <div class="text-left shadow-lg p-4 rounded-md">
-      <p class="text-sm font-semibold mb-2" v-text="this.lastUID">Číslo tvojho ISIC čipu</p>  
+      <p class="text-sm font-semibold mb-2">Číslo tvojho ISIC čipu</p>  
       <div style="position: relative;">
       <input type="number" name="chipnumber" id="chipnumber" v-bind:placeholder="chipNumberPlaceholder" v-model="chipNumber">
       <span v-if="this.nfcAble == true" @click="nfcRead()" class="material-icons-outlined absolute right-3 top-1/4">contactless</span>
