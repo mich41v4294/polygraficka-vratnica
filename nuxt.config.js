@@ -43,8 +43,9 @@ export default {
   ],
   
   toast: {
+    theme: "outline",
     position: 'top-center',
-    duration: 3000
+    duration: 5000
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
