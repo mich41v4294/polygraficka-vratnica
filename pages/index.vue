@@ -135,7 +135,7 @@
     </div>
     <div class="content" v-if="visiblestep == 3">
       <div>
-      <h1 class="mt-8">A tvoj zákonny zástupca?</h1>
+      <h1 class="mt-8">A tvoj zákonný zástupca?</h1>
       <h2 class="mt-2 text-base">Do dátumu zadaj deň testovania, očkovania alebo pozitívneho testu.</h2>
       </div>
       <div class="shadow-lg p-4 mb-28">
