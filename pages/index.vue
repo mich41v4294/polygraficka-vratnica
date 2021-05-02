@@ -117,7 +117,6 @@ export default {
       emptyIsicInput: false,
       firstname: "",
       schoolclass: "",
-      token: "",
       validToken: false,
       pin: "",
     };
