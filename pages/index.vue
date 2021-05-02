@@ -20,10 +20,6 @@
       <span v-show="wrongIsic" style="color:red">Nesprávne číslo čipu/kontrolné písmeno!</span>
       <span v-show="checkChipError" style="color:red">Chyba komunikácie!</span>
       <span v-show="emptyIsicInput" style="color:red">Vyplňte požadované údaje</span>
-      <div v-if="this.pin !== ''">
-        <p>Tvoj pin je</p>
-        <h1 v-text="pin"></h1>
-      </div>
       </div>
       </div>
       <div class="self-end">
@@ -84,8 +80,6 @@
       <h1>Ďakujeme!</h1>
       <h2>Pomáhajme si navzájom.</h2>
       </div>
-      <h1 class="text-7xl" v-text="pin"></h1>
-      <h2>Tento pin si uschovajte, budete ho potrebovať vovnútri.</h2>
       <p class="back" @click="tostart()">Na začiatok</p>
     </div>
   </div>
@@ -118,7 +112,6 @@ export default {
       firstname: "",
       schoolclass: "",
       validToken: false,
-      pin: "",
     };
   },
   methods: {
@@ -211,7 +204,6 @@ export default {
       })
       .then((response) => {
         console.log(response);
-        this.pin = response.data.pin;
         this.$cookies.set("token", response.data.token, "30d")
        })
       .catch((error) => {
@@ -268,7 +260,6 @@ export default {
       })
       .then((response) => {
         console.log(response);
-        this.pin = response.data.pin;
         this.chipNumberPlaceholder = response.data.chipNumber;
         this.isicCheckLetterPlaceholder = "*";
         this.validToken = true;
