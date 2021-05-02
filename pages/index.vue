@@ -271,16 +271,6 @@ export default {
     };
   },
   methods: {
-    
-   /* isicCheck() { //isic kontrola
-      console.log(this.chipNumber);
-      if () {                   
-      this.wrongIsic = false;//ak v poriadku
-      this.next();
-    } else {
-      this.wrongIsic = true;//ak chyba
-    }
-    },*/
     next() {
       this.visiblestep = this.visiblestep + 1;
       console.log(this.visiblestep);
