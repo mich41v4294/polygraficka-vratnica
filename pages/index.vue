@@ -236,7 +236,7 @@
 </defs>
 </svg>
       <h2 class="text-center font-bold mt-2">Na vrátnici sa prosím preukáž svojou ISIC kartou.</h2>
-      <p class="home" @click="tostart(); resetIsicInput()"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <p class="home" @click="tostart(); resetIsicInput(); existingcookiescheck();"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
       </svg>Na začiatok</p>
     </div>
@@ -271,7 +271,7 @@ export default {
       validToken: false,
       checkMethod: "",
       nfcAble: true,
-      lastUID: "",
+      scannedUID: "",
     };
   },
   methods: {
@@ -291,18 +291,27 @@ export default {
       //go to start
       },
     checkChip(){
-      if (this.chipNumber !== "" || this.isicCheckLetter !== "") {
-        this.checkChipNumber();
+      if (this.chipNumber !== "") {
+        this.checkChipWithNumber();
         this.checkMethod = "chipNumber";
+      } else if (this.scannedUID !== "") {
+        if (this.isicCheckLetter !== "") {
+        this.checkChipWithUID();
+        this.checkMethod = "UID";
+        }
+        else{
+          this.emptyIsicInput = true;
+          this.isicCheckLetterPlaceholder = "Vyplňte kontrolné písmeno!"
+        }
       } else if (this.validToken == true) {
-        this.checkChipToken();
+        this.checkChipWithToken();
         this.checkMethod = "token";
       } else {
         this.emptyIsicInput = true;
         this.checkMethod = "";
       }
     },
-    checkChipToken() {
+    checkChipWithToken() {
       axios.get('https://vratnica.polygraficka.sk/checkChip',{
         params: {
           token:this.$cookies.get("token"),
@@ -325,10 +334,34 @@ export default {
         this.checkChipError = true;
       });
       },
-      checkChipNumber() {
+      checkChipWithNumber() {
       axios.get('https://vratnica.polygraficka.sk/checkChip',{
         params: {
           chipNumber:this.chipNumber,
+          checkLetter: this.isicCheckLetter,
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        this.firstname = response.data.firstName;
+        this.schoolclass = response.data.schoolClass;
+        this.adult = response.data.adult;
+        if (this.firstname === "" || this.schoolclass === "" || this.adult === "") {
+          this.wrongIsic = true;
+        } else {
+          this.wrongIsic = false;
+          this.next();
+        }
+       })
+      .catch((error) => {
+        console.log(error);
+        this.checkChipError = true;
+      });
+      },
+      checkChipWithUID() {
+      axios.get('https://vratnica.polygraficka.sk/checkChip',{
+        params: {
+          UID:this.scannedUID,
           checkLetter: this.isicCheckLetter,
         }
       })
@@ -371,6 +404,23 @@ export default {
         axios.get('https://vratnica.polygraficka.sk/userData',{
         params: {
           token:this.$cookies.get("token"),
+          testdate:this.testdate,
+          testtype:this.testtype,
+          parenttestdate:this.parenttestdate,
+          parenttesttype:this.parenttesttype,
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        this.$cookies.set("token", response.data.token, "30d")
+       })
+      .catch((error) => {
+        console.log(error);
+      });
+      } else if (this.checkMethod == "UID") {
+        axios.get('https://vratnica.polygraficka.sk/userData',{
+        params: {
+          UID:this.scannedUID,
           testdate:this.testdate,
           testtype:this.testtype,
           parenttestdate:this.parenttestdate,
@@ -474,16 +524,18 @@ export default {
 
     ndef.addEventListener("readingerror", () => {
       console.log("Argh! Cannot read data from the NFC tag. Try another one?");
-      this.$toast.show('Chyba skenu');
+      this.$toast.show('Chyba skenu!');
     });
 
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
       console.log(`> Serial Number: ${serialNumber}`);
-      this.lastUID = serialNumber;
-      console.log(`> Records: (${message.records.length})`);
+      this.scannedUID = serialNumber;
+      this.chipNumberPlaceholder = "ISIC načítaný";
+      this.isicCheckLetterPlaceholder = "Vyplňte kontrolné písmeno!";
+      this.$toast.show('Zadaj kontrolné písmeno');
     });
   } catch (error) {
-    this.$toast.show('Chyba skenu');
+    this.$toast.show('Chyba skenu!');
     console.log("Argh! " + error);
   }
 },
