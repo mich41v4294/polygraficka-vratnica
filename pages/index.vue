@@ -413,7 +413,11 @@ export default {
         this.next();
       }
     },
+    
+      
+    
     existingcookiescheck() {
+      if (this.$cookies.isKey("token") == true) {
       axios.get('https://vratnica.polygraficka.sk/checkToken',{
         params: {
           token:this.$cookies.get("token"),
@@ -430,8 +434,9 @@ export default {
         this.$cookies.remove("token");
         this.validToken = false;
       });
-      
+      };
       },
+
     resetIsicInput(){
       this.chipNumber = "";
       this.isicCheckLetter = "";
