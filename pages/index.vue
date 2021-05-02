@@ -79,10 +79,10 @@
 </svg>
 
       <div class="text-left shadow-lg p-4 rounded-md">
-      <p class="text-sm font-semibold mb-2">Číslo tvojho ISIC čipu</p>  
+      <p class="text-sm font-semibold mb-2" v-text="this.lastUID">Číslo tvojho ISIC čipu</p>  
       <div style="position: relative;">
-      <input  type="number" name="chipnumber" id="chipnumber" v-bind:placeholder="chipNumberPlaceholder" v-model="chipNumber">
-      <span class="material-icons-outlined absolute right-3 top-1/4">contactless</span>
+      <input type="number" name="chipnumber" id="chipnumber" v-bind:placeholder="chipNumberPlaceholder" v-model="chipNumber">
+      <span v-if="this.nfcAble == true" @click="nfcRead()" class="material-icons-outlined absolute right-3 top-1/4">contactless</span>
       </div>
       <p class="text-sm font-semibold mt-4 mb-2">Posledné písmeno čísla ISIC</p>
       <input  type="text" name="isicCheckLetter" id="isicCheckLetter" v-bind:placeholder="isicCheckLetterPlaceholder" maxlength="1" v-model="isicCheckLetter">
@@ -270,7 +270,8 @@ export default {
       schoolclass: "",
       validToken: false,
       checkMethod: "",
-      nfcAble: false,
+      nfcAble: true,
+      lastUID: "",
     };
   },
   methods: {
@@ -463,11 +464,31 @@ export default {
       if ("NDEFReader" in window) {
         this.nfcAble = true;
       }
-    }
+    },
+    async nfcRead() {
+  try {
+    const ndef = new NDEFReader();
+    await ndef.scan();
+    console.log("> Scan started");
+
+    ndef.addEventListener("readingerror", () => {
+      console.log("Argh! Cannot read data from the NFC tag. Try another one?");
+    });
+
+    ndef.addEventListener("reading", ({ message, serialNumber }) => {
+      console.log(`> Serial Number: ${serialNumber}`);
+      this.lastUID = serialNumber;
+      console.log(`> Records: (${message.records.length})`);
+    });
+  } catch (error) {
+    console.log("Argh! " + error);
+  }
+},
+  
   },
   beforeMount(){
     this.existingcookiescheck();
-    this.nfcCheck();
+    //this.nfcCheck();
   },
   mounted () {
    
