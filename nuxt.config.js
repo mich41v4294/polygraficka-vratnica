@@ -10,6 +10,7 @@ export default {
     },
     meta: [
       { charset: 'utf-8' },
+      { theme_color: '#009EE2' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
     ],
