@@ -506,7 +506,11 @@ h2{
 }
 
 input, select {
-  @apply px-3 py-3 border-2 border-gray-200 rounded-md w-full text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none focus:border-transparent cursor-pointer;
+  @apply px-3 py-3 border-2 border-gray-200 rounded-md w-full text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none focus:border-transparent;
+}
+
+select{
+  @apply cursor-pointer;
 }
 
 .input:focus {
