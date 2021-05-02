@@ -288,7 +288,6 @@ export default {
     tostart() {
       this.visiblestep = 0;
       console.log(this.visiblestep);
-      this.$toast.show('AAAAATOASTAAAAA');
       //go to start
       },
     checkChip(){
