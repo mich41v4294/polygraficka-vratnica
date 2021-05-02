@@ -1,7 +1,7 @@
 <template>
   <div class="w-screen h-screen flex flex-col">
     <div class="header" style="background: #009EE2;">
-      <svg xmlns="http://www.w3.org/2000/svg" @click="tostart()" class="h-3/4 max-w-full" viewBox="0 0 1804.399 429.873">
+      <svg xmlns="http://www.w3.org/2000/svg" @click="tostart()" class="h-3/4 max-w-full cursor-pointer" viewBox="0 0 1804.399 429.873">
   <g>
     <path d="M559.236,38.143,506.448,169.186H489.184L436.4,38.143h15.366a6.342,6.342,0,0,1,4.113,1.277,8.005,8.005,0,0,1,2.4,3.285l35.071,89.066q1.266,3.285,2.486,7.209t2.214,8.213q.9-4.289,1.989-8.213t2.35-7.209l34.98-89.066a7.1,7.1,0,0,1,2.306-3.193,6.28,6.28,0,0,1,4.112-1.369Z" fill="#fff"/>
     <path d="M672.762,169.186H655.588a8.007,8.007,0,0,1-7.5-4.106L616,119.635a9.6,9.6,0,0,0-3.345-3.24,11.957,11.957,0,0,0-5.423-.959H594.666v53.75H575.413V38.143h37.421a79.269,79.269,0,0,1,21.648,2.6,41.88,41.88,0,0,1,15,7.391,29.377,29.377,0,0,1,8.768,11.545A38.637,38.637,0,0,1,661.1,74.828,39.187,39.187,0,0,1,659.023,87.7a33.87,33.87,0,0,1-6.1,10.813,38.558,38.558,0,0,1-9.808,8.26,47.832,47.832,0,0,1-13.106,5.293,19.96,19.96,0,0,1,6.237,6.113Zm-60.561-67.9a42.516,42.516,0,0,0,13.062-1.824,26.458,26.458,0,0,0,9.445-5.156,21.169,21.169,0,0,0,5.7-7.94,26.469,26.469,0,0,0,1.9-10.176q0-11.311-7.366-17.064t-22.1-5.748H594.666v47.908Z" fill="#fff"/>
@@ -491,12 +491,12 @@ h1{
   color: #009ee2; 
 }
 p.back{
-  @apply text-left text-gray-300 mx-auto px-6 py-2 rounded font-semibold text-sm flex justify-center items-center mb-16 text-blue-999;
+  @apply text-left text-gray-300 mx-auto px-6 py-2 rounded font-semibold text-sm flex justify-center items-center mb-16 text-blue-999 cursor-pointer;
   border: 2px solid #009ee2;
 }
 
 p.home {
-  @apply text-left text-gray-300 mx-auto px-6 py-2 rounded font-semibold text-sm flex justify-center items-center mb-16 gap-2;
+  @apply text-left text-gray-300 mx-auto px-6 py-2 rounded font-semibold text-sm flex justify-center items-center mb-16 gap-2 cursor-pointer;
   background: #009ee2;
   color: white;
 }
@@ -506,7 +506,7 @@ h2{
 }
 
 input, select {
-  @apply px-3 py-3 border-2 border-gray-200 rounded-md w-full text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none focus:border-transparent;
+  @apply px-3 py-3 border-2 border-gray-200 rounded-md w-full text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none focus:border-transparent cursor-pointer;
 }
 
 .input:focus {
@@ -514,7 +514,7 @@ input, select {
 }
 
 .button {
-  @apply text-white rounded-md flex items-center justify-center py-4 font-semibold mt-4;
+  @apply text-white rounded-md flex items-center justify-center py-4 font-semibold mt-4 cursor-pointer;
 }
 
 .warning {
