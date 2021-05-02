@@ -19,7 +19,7 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></p>
       <span v-show="wrongIsic" style="color:red">Nesprávne číslo čipu/kontrolné písmeno!</span>
       <span v-show="checkChipError" style="color:red">Chyba komunikácie!</span>
-      <span v-show="emptyIsicInput" style="color:red">Vypíšte požadovené údaje</span>
+      <span v-show="emptyIsicInput" style="color:red">Vyplňte požadované údaje</span>
       <div v-if="this.pin !== ''">
         <p>Tvoj pin je</p>
         <h1 v-text="pin"></h1>
