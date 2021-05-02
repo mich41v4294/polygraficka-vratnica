@@ -522,12 +522,12 @@ export default {
   try {
     const ndef = new NDEFReader();
     await ndef.scan();
-    this.$toast.show('Naskenuj ISIC');
+    this.$toast.show('Naskenuj ISIC', {icon: 'contactless'});
     console.log("> Scan started");
 
     ndef.addEventListener("readingerror", () => {
       console.log("Argh! Cannot read data from the NFC tag. Try another one?");
-      this.$toast.show('Chyba skenu!');
+      this.$toast.show('Chyba skenu!', {icon: 'error'});
     });
 
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
@@ -535,10 +535,10 @@ export default {
       this.scannedUID = serialNumber;
       this.chipNumberPlaceholder = "ISIC načítaný";
       this.isicCheckLetterPlaceholder = "Vyplňte kontrolné písmeno!";
-      this.$toast.show('Zadaj kontrolné písmeno');
+      this.$toast.show('Zadaj kontrolné písmeno', {icon: 'shield'});
     });
   } catch (error) {
-    this.$toast.show('Chyba skenu!');
+    this.$toast.show('Chyba skenu!', {icon: 'error'});
     console.log("Argh! " + error);
   }
 },
