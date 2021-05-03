@@ -387,6 +387,7 @@ export default {
         axios.get('https://vratnica.polygraficka.sk/userData',{
         params: {
           chipNumber:this.chipNumber,
+          checkLetter: this.isicCheckLetter,
           testdate:this.testdate,
           testtype:this.testtype,
           parenttestdate:this.parenttestdate,
@@ -404,6 +405,7 @@ export default {
         axios.get('https://vratnica.polygraficka.sk/userData',{
         params: {
           token:this.$cookies.get("token"),
+          checkLetter: this.isicCheckLetter,
           testdate:this.testdate,
           testtype:this.testtype,
           parenttestdate:this.parenttestdate,
@@ -421,6 +423,7 @@ export default {
         axios.get('https://vratnica.polygraficka.sk/userData',{
         params: {
           UID:this.scannedUID,
+          checkLetter: this.isicCheckLetter,
           testdate:this.testdate,
           testtype:this.testtype,
           parenttestdate:this.parenttestdate,
