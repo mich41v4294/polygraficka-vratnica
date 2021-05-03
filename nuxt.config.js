@@ -7,7 +7,7 @@ export default {
   head: {
     title: 'Vrátnica - Polygrafická',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'sk'
     },
     meta: [
       { charset: 'utf-8' },
