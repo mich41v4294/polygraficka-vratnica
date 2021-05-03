@@ -1,6 +1,6 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: false, //nastavit na false pri static builde!!
+  ssr: false, //nastavit na true pri static builde!!
   target: 'static', // default is 'server'
 
   // Global page headers: https://go.nuxtjs.dev/config-head
