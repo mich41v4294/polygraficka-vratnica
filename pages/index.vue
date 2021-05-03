@@ -86,7 +86,7 @@
       </div>
       <p class="text-sm font-semibold mt-4 mb-2">Posledné písmeno čísla ISIC</p>
       <input  type="text" name="isicCheckLetter" id="isicCheckLetter" v-bind:placeholder="isicCheckLetterPlaceholder" maxlength="1" v-model="isicCheckLetter">
-      <p class="button bg-blue-999" type="button" value="Ďalej" style="" @click="checkChip();">Pokračovať
+      <p class="button bg-blue-999"  value="Ďalej" style="" @click="checkChip();">Pokračovať
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></p>
       <p v-show="wrongIsic" class="warning" style="color:red" >Nesprávne číslo čipu/kontrolné písmeno!</p>
@@ -103,8 +103,8 @@
       <span class="text-4xl font-bold mb-1">Ahoj, si&nbsp;</span><span class="text-4xl font-bold mb-1" style="color: #009ee2;">{{firstname}}</span><span class="text-4xl font-bold mb-1">?</span>
       <h2 class="text-base mt-2">Chodíš do {{schoolclass}}, však?</h2>
       <div class="mt-16">
-      <p @click="next()" class="button h-16 bg-blue-999 transition duration-500 ease-in-out hover:bg-blue-600" type="button" value="Áno">Áno, som to ja</p>
-      <p @click="tostart(); resetIsicInput();" class="text-white rounded-md flex items-center justify-center py-4 font-semibold mt-4 cursor-pointer bg-red-500 transition duration-500 ease-in-out hover:bg-red-600" type="button" value="Nie">Nie, zoberte ma späť</p>
+      <p @click="next()" class="button h-16 bg-blue-999 transition duration-500 ease-in-out hover:bg-blue-600"  value="Áno">Áno, som to ja</p>
+      <p @click="tostart(); resetIsicInput();" class="text-white rounded-md flex items-center justify-center py-4 font-semibold mt-4 cursor-pointer bg-red-500 transition duration-500 ease-in-out hover:bg-red-600"  value="Nie">Nie, zoberte ma späť</p>
       </div>
       </div>
       <p class="back" @click="back()"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -126,7 +126,7 @@
       </select>
       <p for="testdate" class="text-sm font-semibold mt-3">Vyber dátum testu alebo očkovania</p>
       <input class="mt-2" type="date" name="testdate" id="testdate" v-model="testdate" :max="todaydate()">
-      <p class="button bg-blue-999" type="button" value="Ďalej" style="" @click="adultnextpage();">Pokračovať
+      <p class="button bg-blue-999"  value="Ďalej" style="" @click="adultnextpage();">Pokračovať
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></p>
       <span v-show="emptystudent" style="color:red" class="warning">Nesprávne vyplnené údaje!</span>
@@ -150,7 +150,7 @@
       </select>
       <p for="testdate" class="text-sm font-semibold mt-3">Vyber dátum testu alebo očkovania</p>
       <input class="mt-2" type="date" name="testdate" id="testdate" v-model="parenttestdate" :max="todaydate()">
-      <p class="button bg-blue-999" type="button" value="Ďalej" style="" @click="parentnext();">Pokračovať
+      <p class="button bg-blue-999"  value="Ďalej" style="" @click="parentnext();">Pokračovať
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></p>
       <span v-show="emptyparent" style="color:red" class="warning">Nesprávne vyplnené údaje!</span>
