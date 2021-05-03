@@ -312,7 +312,7 @@ export default {
       }
     },
     checkChipWithToken() {
-      axios.post('https://vratnica.polygraficka.sk/getToken',{
+      axios.post('/getToken',{
           token:this.$cookies.get("token"),
       })
       .then((response) => {
@@ -334,7 +334,7 @@ export default {
       });
       },
       checkChipWithNumber() {
-      axios.post('https://vratnica.polygraficka.sk/getToken',{
+      axios.post('/getToken',{
           chipNumber:this.chipNumber,
           checkLetter: this.isicCheckLetter,
       })
@@ -357,7 +357,7 @@ export default {
       });
       },
       checkChipWithUID() {
-      axios.post('https://vratnica.polygraficka.sk/getToken',{
+      axios.post('/getToken',{
           UID:this.scannedUID,
           checkLetter: this.isicCheckLetter,
       })
@@ -380,7 +380,7 @@ export default {
       });
       },
     submit() {
-        axios.post('https://vratnica.polygraficka.sk/userData',{
+        axios.post('/userData',{
           token:this.$cookies.get("token"),
           testdate:this.testdate,
           testtype:this.testtype,
@@ -445,7 +445,7 @@ export default {
     },
     existingcookiescheck() {
       if (this.$cookies.isKey("token") == true) {
-      axios.post('https://vratnica.polygraficka.sk/checkToken',{
+      axios.post('/checkToken',{
           token:this.$cookies.get("token"),
       })
       .then((response) => {
