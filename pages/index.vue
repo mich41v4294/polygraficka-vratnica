@@ -41,7 +41,7 @@
   </g>
 </svg>
     </div>
-    <div class="content" v-if="visiblestep == 0">
+    <div class="content" v-show="visiblestep == 0">
       <div>
       <div class="mt-8 mb-3">
       <h1 class="" style="">Vitaj v škole!</h1>
@@ -82,7 +82,7 @@
       <p class="text-sm font-semibold mb-2">Číslo tvojho ISIC čipu</p>  
       <div style="position: relative;">
       <input type="number" name="chipnumber" id="chipnumber" v-bind:placeholder="chipNumberPlaceholder" v-model="chipNumber">
-      <span v-if="this.nfcAble == true" @click="nfcRead()" class="material-icons-outlined absolute right-3 top-1/4">contactless</span>
+      <span v-show="this.nfcAble == true" @click="nfcRead()" class="material-icons-outlined absolute right-3 top-1/4">contactless</span>
       </div>
       <p class="text-sm font-semibold mt-4 mb-2">Posledné písmeno čísla ISIC</p>
       <input  type="text" name="isicCheckLetter" id="isicCheckLetter" v-bind:placeholder="isicCheckLetterPlaceholder" maxlength="1" v-model="isicCheckLetter">
@@ -98,7 +98,7 @@
         <p class="text-xs text-gray-400 text-center my-5">Používaním aplikácie súhlasíte so všeobecnými podmienkami ochrany osobných údajov a používaním cookies.</p>
         </div>
     </div>
-    <div class="content" v-if="visiblestep == 1">
+    <div class="content" v-show="visiblestep == 1">
       <div class="mt-8">
       <span class="text-4xl font-bold mb-1">Ahoj, si&nbsp;</span><span class="text-4xl font-bold mb-1" style="color: #009ee2;">{{firstname}}</span><span class="text-4xl font-bold mb-1">?</span>
       <h2 class="text-base mt-2">Chodíš do {{schoolclass}}, však?</h2>
@@ -111,7 +111,7 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" /> 
       </svg>Krok späť</p>
     </div>
-    <div class="content" v-if="visiblestep == 2">
+    <div class="content" v-show="visiblestep == 2">
       <div>
       <h1 class="mt-8">Máš test?<br> Si zaočkovaný?</h1>
       <h2 class="mt-2 text-base">Do dátumu zadaj deň testovania, očkovania alebo pozitívneho testu.</h2>
@@ -135,7 +135,7 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
       </svg>Krok späť</p>
     </div>
-    <div class="content" v-if="visiblestep == 3">
+    <div class="content" v-show="visiblestep == 3">
       <div>
       <h1 class="mt-8">A tvoj zákonný zástupca?</h1>
       <h2 class="mt-2 text-base">Do dátumu zadaj deň testovania, očkovania alebo pozitívneho testu.</h2>
@@ -159,7 +159,7 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
       </svg>Krok späť</p>
     </div>
-    <div class="content" v-if="visiblestep == 4">
+    <div class="content" v-show="visiblestep == 4">
       <div>
       <h1 class="mt-8 text-center">Ďakujeme!</h1>
       <h2 class="text-center">..že pomáhaš sebe aj svojim spolužiakom</h2>
