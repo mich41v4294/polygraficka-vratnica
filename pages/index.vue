@@ -320,6 +320,7 @@ export default {
         this.firstname = response.data.firstName;
         this.schoolclass = response.data.schoolClass;
         this.adult = response.data.adult;
+        this.$cookies.set("token", response.data.token, "30d")
         if (this.firstname === "" || this.schoolclass === "" || this.adult === "") {
           this.emptyIsicInput = true;
         } else {
@@ -342,6 +343,7 @@ export default {
         this.firstname = response.data.firstName;
         this.schoolclass = response.data.schoolClass;
         this.adult = response.data.adult;
+        this.$cookies.set("token", response.data.token, "30d");
         if (this.firstname === "" || this.schoolclass === "" || this.adult === "") {
           this.wrongIsic = true;
         } else {
@@ -364,6 +366,7 @@ export default {
         this.firstname = response.data.firstName;
         this.schoolclass = response.data.schoolClass;
         this.adult = response.data.adult;
+        this.$cookies.set("token", response.data.token, "30d");
         if (this.firstname === "" || this.schoolclass === "" || this.adult === "") {
           this.wrongIsic = true;
         } else {
@@ -377,26 +380,8 @@ export default {
       });
       },
     submit() {
-      if (this.checkMethod == "chipNumber") {
-        axios.post('https://vratnica.polygraficka.sk/userData',{
-          chipNumber:this.chipNumber,
-          checkLetter: this.isicCheckLetter,
-          testdate:this.testdate,
-          testtype:this.testtype,
-          parenttestdate:this.parenttestdate,
-          parenttesttype:this.parenttesttype,
-      })
-      .then((response) => {
-        console.log(response);
-        this.$cookies.set("token", response.data.token, "30d")
-       })
-      .catch((error) => {
-        console.log(error);
-      });
-      } else if (this.checkMethod == "token") {
         axios.post('https://vratnica.polygraficka.sk/userData',{
           token:this.$cookies.get("token"),
-          checkLetter: this.isicCheckLetter,
           testdate:this.testdate,
           testtype:this.testtype,
           parenttestdate:this.parenttestdate,
@@ -409,24 +394,6 @@ export default {
       .catch((error) => {
         console.log(error);
       });
-      } else if (this.checkMethod == "UID") {
-        axios.post('https://vratnica.polygraficka.sk/userData',{
-          UID:this.scannedUID,
-          checkLetter: this.isicCheckLetter,
-          testdate:this.testdate,
-          testtype:this.testtype,
-          parenttestdate:this.parenttestdate,
-          parenttesttype:this.parenttesttype,
-      })
-      .then((response) => {
-        console.log(response);
-        this.$cookies.set("token", response.data.token, "30d")
-       })
-      .catch((error) => {
-        console.log(error);
-      });
-      }
-      
       },
     adultnextpage(){
       if (this.checkstudentempty() == true) {
