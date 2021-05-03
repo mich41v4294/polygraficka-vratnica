@@ -100,8 +100,8 @@
     </div>
     <div class="content" v-if="visiblestep == 1">
       <div class="mt-8">
-      <span class="text-4xl font-bold mb-1">Ahoj, si&nbsp;</span><span v-text="firstname" class="text-4xl font-bold mb-1" style="color: #009ee2;"></span><span class="text-4xl font-bold mb-1">?</span>
-      <h2 class="text-base mt-2" v-text="'Chodíš do ' + schoolclass + ', však?'"></h2>
+      <span class="text-4xl font-bold mb-1">Ahoj, si&nbsp;</span><span class="text-4xl font-bold mb-1" style="color: #009ee2;">{{firstname}}</span><span class="text-4xl font-bold mb-1">?</span>
+      <h2 class="text-base mt-2">Chodíš do {{schoolclass}}, však?</h2>
       <div class="mt-16">
       <p @click="next()" class="button h-16 bg-blue-999 transition duration-500 ease-in-out hover:bg-blue-600" type="button" value="Áno">Áno, som to ja</p>
       <p @click="tostart(); resetIsicInput();" class="text-white rounded-md flex items-center justify-center py-4 font-semibold mt-4 cursor-pointer bg-red-500 transition duration-500 ease-in-out hover:bg-red-600" type="button" value="Nie">Nie, zoberte ma späť</p>
