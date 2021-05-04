@@ -44,7 +44,7 @@ export default {
   ],
   
   toast: {
-    className: ['button'],
+    className: ['toast'],
     position: 'top-center',
     duration: 5000
   },

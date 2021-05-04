@@ -570,5 +570,9 @@ select{
   @apply mt-4;
 }
 
+.toast {
+  background: #009EE2;
+}
+
 
 </style>
