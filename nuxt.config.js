@@ -44,7 +44,7 @@ export default {
   ],
   
   toast: {
-    theme: "outline",
+    className: ['button'],
     position: 'top-center',
     duration: 5000
   },
